@@ -1,4 +1,6 @@
-# Python3 program to create target string, starting from 
+# found at https://blog.usejournal.com/understanding-the-genetic-algorithm-4eac04a07a59
+
+# Python3 program to create target string, starting from
 # random string using Genetic Algorithm 
 
 import random 
@@ -11,7 +13,7 @@ GENES = '''abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOP
 QRSTUVWXYZ 1234567890, .-;:_!"#%&/()=?@${[]}'''
 
 # Target string to be generated 
-TARGET = "I am student at DSTI"
+TARGET = "I am a DSTI student"
 
 class Individual(object): 
 	''' 

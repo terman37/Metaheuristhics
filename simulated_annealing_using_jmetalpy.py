@@ -4,9 +4,7 @@ from jmetal.operator import BestSolutionSelection, SimpleRandomMutation, SBXCros
 from jmetal.core.problem import FloatProblem, FloatSolution
 from jmetal.util.termination_criterion import StoppingByEvaluations
 
-
 class MyRosen(FloatProblem):
-
     def __init__(self, number_of_variables: int = 10):
         super(MyRosen, self).__init__()
         self.number_of_objectives = 1
@@ -33,14 +31,11 @@ class MyRosen(FloatProblem):
     def get_name(self) -> str:
         return 'MyRosen'
 
-
-# init_pop = np.random.uniform(-10, 10, 5)
-
 problem = MyRosen(5)
 
 algorithm = GeneticAlgorithm(
     problem=problem,
-    population_size=30,
+    population_size=100,
     offspring_population_size=30,
     mutation=SimpleRandomMutation(0.4),
     crossover=SBXCrossover(0.9, 20.0),
@@ -57,10 +52,3 @@ print('Solution: {}'.format(result.variables))
 print('Fitness: {}'.format(result.objectives[0]))
 print('Computing time: {}'.format(algorithm.total_computing_time))
 
-from jmetal.lab.visualization import Plot
-
-myplot = Plot()
-# front = algorithm.get_result()
-
-plot_front = Plot()
-plot_front.plot(result)
