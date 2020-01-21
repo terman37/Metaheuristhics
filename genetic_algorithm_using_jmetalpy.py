@@ -36,11 +36,11 @@ problem = MyRosen(5)
 algorithm = GeneticAlgorithm(
     problem=problem,
     population_size=100,
-    offspring_population_size=30,
+    offspring_population_size=50,
     mutation=SimpleRandomMutation(0.4),
     crossover=SBXCrossover(0.9, 20.0),
     selection=BestSolutionSelection(),
-    termination_criterion=StoppingByEvaluations(max=3000)
+    termination_criterion=StoppingByEvaluations(max=5000)
 )
 
 algorithm.run()
