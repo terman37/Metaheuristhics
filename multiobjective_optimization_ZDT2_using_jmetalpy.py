@@ -1,19 +1,18 @@
 from jmetal.algorithm.multiobjective.nsgaii import NSGAII
 from jmetal.operator import SBXCrossover, PolynomialMutation
-from jmetal.problem import ZDT1, ZDT2
-from jmetal.util.solution import get_non_dominated_solutions, read_solutions, print_function_values_to_file, \
-    print_variables_to_file
+from jmetal.problem import ZDT1, ZDT2, ZDT3, ZDT4, ZDT6
+from jmetal.util.solution import get_non_dominated_solutions
 from jmetal.util.termination_criterion import StoppingByEvaluations
+from jmetal.lab.visualization import Plot
 
 if __name__ == '__main__':
-    problem = ZDT2()
-    # problem.reference_front = read_solutions(filename='ZDT2.pf')
-
+    problem = ZDT6(number_of_variables=10)
     max_evaluations = 25000
+
     algorithm = NSGAII(
         problem=problem,
         population_size=100,
-        offspring_population_size=100,
+        offspring_population_size=50,
         mutation=PolynomialMutation(probability=1.0 / problem.number_of_variables, distribution_index=20),
         crossover=SBXCrossover(probability=1.0, distribution_index=20),
         termination_criterion=StoppingByEvaluations(max=max_evaluations)
@@ -26,7 +25,5 @@ if __name__ == '__main__':
     print('Problem: ' + problem.get_name())
     print('Computing time: ' + str(algorithm.total_computing_time))
 
-    from jmetal.lab.visualization import Plot
-
     plot_front = Plot(title='Pareto front approximation', axis_labels=['x', 'y'])
-    plot_front.plot(front, label='NSGAII-ZDT2')
+    plot_front.plot(front, label=algorithm.get_name()+'-'+problem.get_name())
