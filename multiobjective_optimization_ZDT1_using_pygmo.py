@@ -1,4 +1,4 @@
-from pygmo import *
+f
 from matplotlib import pyplot as plt
 
 D=10
